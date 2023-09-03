@@ -9,7 +9,7 @@
     {{-- <script src="/app.js"></script> --}}
 </head>
 <body>
-    
+
     <?php foreach ($posts as $post): ?>
         <article>
             <?= $post ; ?>
