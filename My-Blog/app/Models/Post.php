@@ -25,9 +25,12 @@
 
 
     public static function all()
-    {
-        return collect(File::files(resource_path("posts")))
 
+    {
+
+        return cache()->rememberForever('posts.all', function () {
+
+        return collect(File::files(resource_path("posts")))
         ->map(fn($file)=>YamlFrontMatter::parseFile($file))
         ->map(fn($document)=> new Post(
 
@@ -37,8 +40,11 @@
                 $document->slug,
                 $document->body()
            )
+        )
+        ->sortBy('date');
 
-        );
+        });
+
     }
     public static function find($slug)
     {
