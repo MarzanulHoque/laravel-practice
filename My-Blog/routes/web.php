@@ -26,11 +26,11 @@ Route::get('/', function () {
 
 
 
-Route::get('/posts/{post}', function ($id) {
+Route::get('/posts/{post:slug}', function (Post $post) {
 
     //find a post by its id and pass to a view function
 
-    $post = Post::findOrFail($id);
+    // $post = Post::findOrFail($id);
 
     return view('post',[
 
