@@ -8,11 +8,14 @@
         </h1>
 
         <p>
-            <a href="#">{{ $post->category->name }}</a>
+            <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
         </p>
 
         <div>
-            {!!  $post->body !!}
+            <p>
+
+                {!!  $post->body !!}
+            </p>
         </div>
         <br>
         <a href="/"> Go Back </a>
