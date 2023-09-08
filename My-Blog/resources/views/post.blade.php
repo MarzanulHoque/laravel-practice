@@ -45,8 +45,8 @@
                         {{ $post->title }}
                     </h1>
 
-                    <div class="space-y-4 lg:text-lg leading-loose">
-                       {{ $post->body }}
+                    <div class="space-y-2 lg:text-lg leading-loose">
+                       {!! $post->body !!}
                             laudantium,
                             totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
                             vitae
