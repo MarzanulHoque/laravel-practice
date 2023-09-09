@@ -21,13 +21,13 @@ use App\Http\Controllers\PostsController ;
 Route::get('/', [PostsController::class ,'index'])->name('home') ;
 Route::get('/posts/{post:slug}', [PostsController::class ,'show'] );
 
-Route::get('/authors/{author:username}',function(User $author){
+// Route::get('/authors/{author:username}',function(User $author){
 
-    // dd($author);
+//     // dd($author);
 
-     return view('posts',[
+//      return view('posts.index',[
 
-        'posts' => $author->posts
+//         'posts' => $author->posts
 
-    ]);
-});
+//     ]);
+// });
