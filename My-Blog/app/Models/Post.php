@@ -9,8 +9,18 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [''];
     protected $with = ['category','author'];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false,fn($query, $search)=>
+            $query
+            ->where('title','like', '%' . $search . '%')
+            ->orWhere('body','like', '%' . $search . '%'));
+    }
+
+
 
     public function category()
     {
@@ -21,12 +31,5 @@ class Post extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
-
-    // protected $fillable = ['title','excerpt','body'];
-
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
 
 }

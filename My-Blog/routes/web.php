@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\File;
-
+use App\Http\Controllers\PostsController ;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,30 +18,8 @@ use Illuminate\Support\Facades\File;
 |
 */
 
-Route::get('/', function () {
-
-    return view('posts',[
-        'posts' => Post::latest()->get(),
-        'categories' => Category::all()
-    ]);
-
-})->name('home') ;
-
-
-
-Route::get('/posts/{post:slug}', function (Post $post) {
-
-    //find a post by its id and pass to a view function
-
-    // $post = Post::findOrFail($id);
-
-    return view('post',[
-
-        'post' => $post
-
-    ]);
-
-});
+Route::get('/', [PostsController::class ,'index'])->name('home') ;
+Route::get('/posts/{post:slug}', [PostsController::class ,'show'] );
 
 Route::get('/categories/{category:slug}',function(Category $category){
      return view('posts',[
