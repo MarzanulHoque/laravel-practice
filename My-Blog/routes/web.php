@@ -12,6 +12,21 @@ use App\Http\Controllers\SessionsController ;
 use App\Http\Controllers\PostCommentsController ;
 
 
+Route::get('ping',function()
+{
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+
+    $mailchimp->setConfig([
+        'apiKey' => config('services.mailchimp.key'),
+        'server' => 'us21'
+    ]);
+
+    $response = $mailchimp->lists->getList('326be16edf');
+    ddd($response);
+
+});
+
+
 Route::get('/', [PostsController::class ,'index'])->name('home') ;
 Route::get('/posts/{post:slug}', [PostsController::class ,'show'] );
 
