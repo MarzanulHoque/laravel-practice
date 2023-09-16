@@ -12,6 +12,8 @@ class NewsletterController extends Controller
     {
         request()->validate(['email' => 'required|email']);
 
+        // ddd($newsletter);
+
         try {
             $newsletter->subscribe(request('email'));
         } catch (Exception $e) {
